@@ -11,6 +11,7 @@ struct Medication: Identifiable, Codable, CustomStringConvertible, Equatable {
     public let id: UUID
     public var name: String
     public var note: String
+    public var schedule: ScheduleConfiguration
     
     static let quantityRange = 0...1000
     public var remainingQuantity: Int {
@@ -23,15 +24,16 @@ struct Medication: Identifiable, Codable, CustomStringConvertible, Equatable {
         }
     }
     
-    init(id: UUID = UUID(), name: String = "", quantity: Int = 1, note: String = "") {
+    init(id: UUID = UUID(), name: String = "", quantity: Int = 1, note: String = "", schedule: ScheduleConfiguration = ScheduleConfiguration()) {
         self.id = id
         self.name = name
         self.remainingQuantity = quantity
         self.note = note
+        self.schedule = schedule
     }
     
     var description: String {
-        "id: \(id), name: \(name), remaining quantity: \(remainingQuantity), note: \(note)"
+        "Medication(id: \(id), name: \(name), remaining quantity: \(remainingQuantity), note: \(note), schedule: \(schedule)"
     }
     
     static func == (lhs: Medication, rhs: Medication) -> Bool {

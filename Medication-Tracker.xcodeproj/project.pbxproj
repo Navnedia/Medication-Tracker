@@ -21,7 +21,7 @@
 		F5226EA32C058DCD00288612 /* DayEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5226EA22C058DCD00288612 /* DayEnum.swift */; };
 		F5226EA52C05C4C300288612 /* ScheduledFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5226EA42C05C4C300288612 /* ScheduledFrequency.swift */; };
 		F56AA81F2C0555DB00639605 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F56AA81E2C0555DB00639605 /* .gitignore */; };
-		F5E43AAF2C06DC0F003406F7 /* ScheduleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E43AAE2C06DC0F003406F7 /* ScheduleDetails.swift */; };
+		F5E43AAF2C06DC0F003406F7 /* ScheduleConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 		F5226EA22C058DCD00288612 /* DayEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEnum.swift; sourceTree = "<group>"; };
 		F5226EA42C05C4C300288612 /* ScheduledFrequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledFrequency.swift; sourceTree = "<group>"; };
 		F56AA81E2C0555DB00639605 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		F5E43AAE2C06DC0F003406F7 /* ScheduleDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetails.swift; sourceTree = "<group>"; };
+		F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +80,7 @@
 				F5226EA22C058DCD00288612 /* DayEnum.swift */,
 				F5226EA42C05C4C300288612 /* ScheduledFrequency.swift */,
 				F51F1C862C009C0400F969F4 /* Medication.swift */,
-				F5E43AAE2C06DC0F003406F7 /* ScheduleDetails.swift */,
+				F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */,
 				F51F1C872C009C0400F969F4 /* MedicationDetailView.swift */,
 				F51F1C892C009C0400F969F4 /* MedicationEditor.swift */,
 				F51F1C842C009C0400F969F4 /* MedicationListRow.swift */,
@@ -174,7 +174,7 @@
 				F51F1C8F2C009C0400F969F4 /* CheckboxToggle.swift in Sources */,
 				F51F1C8D2C009C0400F969F4 /* Medication.swift in Sources */,
 				F51F1C8B2C009C0400F969F4 /* MedicationListRow.swift in Sources */,
-				F5E43AAF2C06DC0F003406F7 /* ScheduleDetails.swift in Sources */,
+				F5E43AAF2C06DC0F003406F7 /* ScheduleConfiguration.swift in Sources */,
 				F51F1C782C009B1500F969F4 /* ContentView.swift in Sources */,
 				F5226EA52C05C4C300288612 /* ScheduledFrequency.swift in Sources */,
 				F51F1C762C009B1500F969F4 /* MedicationTrackerApp.swift in Sources */,
