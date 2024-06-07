@@ -7,14 +7,17 @@
 
 import Foundation
 
-struct Medication: Identifiable, Codable, CustomStringConvertible, Equatable {
+// TODO: I might need to write a custom encoder and decoder.
+
+class Medication: Identifiable, ObservableObject, Equatable, CustomStringConvertible {
     public let id: UUID
-    public var name: String
-    public var note: String
-    public var schedule: ScheduleConfiguration
+    
+    @Published public var name: String
+    @Published public var note: String
+    @Published public var schedule: ScheduleConfiguration
     
     static let quantityRange = 0...1000
-    public var remainingQuantity: Int {
+    @Published public var remainingQuantity: Int {
         didSet(value) {
             if value < Medication.quantityRange.lowerBound {
                 remainingQuantity = Medication.quantityRange.lowerBound
@@ -39,7 +42,18 @@ struct Medication: Identifiable, Codable, CustomStringConvertible, Equatable {
     static func == (lhs: Medication, rhs: Medication) -> Bool {
         return lhs.name == rhs.name &&
                lhs.remainingQuantity == rhs.remainingQuantity &&
-               lhs.note == rhs.note
+               lhs.note == rhs.note &&
+               lhs.schedule == rhs.schedule
+    }
+    
+    /// Creates a deep copy of the medication object.
+    func copy() -> Medication {
+        return Medication(id: id,
+                          name: name,
+                          quantity: remainingQuantity,
+                          note: note,
+                          schedule: schedule
+        )
     }
 }
 

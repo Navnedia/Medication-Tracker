@@ -11,7 +11,12 @@ import SwiftUI
 struct MedicationTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            MedicationsListView(medications: Medication.sampleData)
+            TabView {
+                MedicationsListView(medications: MedicationStore.shared.medications)
+                    .tabItem {
+                        Label("Medications", systemImage: "pill.fill")
+                    }
+            }
         }
     }
 }

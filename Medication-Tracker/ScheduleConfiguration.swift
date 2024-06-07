@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ScheduleConfiguration: Identifiable, Codable, CustomStringConvertible {
+struct ScheduleConfiguration: Identifiable, Codable, Equatable, CustomStringConvertible {
     public let id: UUID
     public var frequency: ScheduledFrequency
     public var days: [Day]
@@ -22,5 +22,11 @@ struct ScheduleConfiguration: Identifiable, Codable, CustomStringConvertible {
     
     var description: String {
         "ScheduleConfiguration(id: \(id), frequency: \(frequency), days: \(String(describing: days)), times: \(String(describing: times)))"
+    }
+    
+    static func == (lhs: ScheduleConfiguration, rhs: ScheduleConfiguration) -> Bool {
+        return lhs.frequency == rhs.frequency &&
+               lhs.days == rhs.days &&
+               lhs.times == rhs.times
     }
 }
