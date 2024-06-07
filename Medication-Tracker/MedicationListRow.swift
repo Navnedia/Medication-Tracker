@@ -16,24 +16,22 @@ struct MedicationListRow: View {
                 .font(.title)
                 .padding(.leading, -10)
             VStack(alignment: .leading) {
-                Text("\(medication.name)") // Maybe include setrength and unit
+                Text("\(medication.name)")
                     .bold()
                     .lineLimit(1)
                 
-                Text("Additional Details") // Mention last taken, or next time scheduled time. Or the mount of pills remaining.
+                Text("\(medication.strength) \(medication.unit.rawValue)")
                     .foregroundColor(Color.gray)
             }
             Spacer()
             
-//            if (medication.remainingQuantity > 1) { // Don't display a remainingQuantity of 1.
-                Text("\(medication.remainingQuantity)") // Clarify the meaning here.
-                    .padding(.trailing, 8)
-//            }
+            Text("\(medication.remainingQuantity)")
+                .padding(.trailing, 8)
         }
     }
 }
 
 
 #Preview {
-    MedicationListRow(medication: .constant(Medication.sampleData[0]))
+    MedicationListRow(medication: .constant(MedicationStore.shared.medications[0]))
 }

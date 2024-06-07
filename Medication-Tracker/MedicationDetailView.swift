@@ -22,6 +22,7 @@ struct MedicationDetailView: View {
                         .bold()
                         .padding(.bottom, 6)
                     
+                    Text("\(medication.strength) \(medication.unit.rawValue)")
                     HStack {
                         Text("Remaining Quantity: ")
                             .bold()

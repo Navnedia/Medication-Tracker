@@ -30,6 +30,20 @@ struct MedicationEditor: View {
                         .onSubmit { closeKeyboard() }
                 }
                 
+                Section(header: Text("Strength and Unit")) {
+                    HStack {
+                        TextField("Strength", value: $medication.strength, formatter: NumberFormatter())
+                            .keyboardType(.numberPad)
+                            .onTapGesture { closeKeyboard() }
+
+                        Picker("Unit", selection: $medication.unit) {
+                            ForEach(Unit.allCases, id: \.self) { unit in
+                                Text(unit.rawValue).tag(unit)
+                            }
+                        }.labelsHidden()
+                    }
+                }
+                
                 Section(header: Text("Remaining Quantity")) {
                     Stepper(value: $medication.remainingQuantity, in: Medication.quantityRange) {
                         TextField("Quantity", value: $medication.remainingQuantity, formatter: NumberFormatter())
