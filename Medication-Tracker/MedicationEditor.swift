@@ -53,11 +53,25 @@ struct MedicationEditor: View {
                     .accessibilityLabel("Remaining Medication Quantity")
                 }
                 
+//                Section(header: Text("Visual Details")) {
+//    //                HStack {
+//                        ColorPicker("Color", selection: .constant(.white))
+//    //                        .labelsHidden()
+//    
+//                        Picker("Type", selection: .constant("")) {
+//                            Text("Tablet")//.tag()
+//                            Text("Capsule")//.tag()
+//                            Text("pill")//.tag()
+//                        }
+//    //                    .labelsHidden()
+//    //                }
+//                }
+                
                 Section(header: Text("Reminders")) {
                     Picker("Frequency", selection: $schedule.frequency) {
-                        Text("As Needed").tag(ScheduledFrequency.asNeeded)
-                        Text("Every Day").tag(ScheduledFrequency.everyDay)
-                        Text("On Specific Days").tag(ScheduledFrequency.specificDays)
+                        ForEach(ScheduledFrequency.allCases, id: \.self) { frequency in
+                            Text(frequency.title).tag(frequency)
+                        }
                     }
                     
                     if (schedule.frequency == .specificDays) {

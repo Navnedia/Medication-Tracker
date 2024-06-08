@@ -20,4 +20,9 @@ enum Day: Int, CaseIterable, Codable {
         let name: String = "\(self)"
         return "\(name[name.startIndex])"
     }
+    
+    var shortName: String {
+        let name: String = "\(self)"
+        return "\(name[name.startIndex])".capitalized + "\(name.dropFirst().prefix(2))"
+    }
 }

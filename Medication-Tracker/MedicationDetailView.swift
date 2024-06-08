@@ -40,7 +40,34 @@ struct MedicationDetailView: View {
                 .frame(height: 108)
                 .background(Color(.blue).opacity(0.2))
                 
-                VStack {
+                VStack(spacing: 6) {
+                    VStack(spacing: 6) {
+                        Text("Reminders")
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        if (medication.schedule.frequency == .specificDays) {
+                            HStack {
+                                ForEach(medication.schedule.days, id: \.self) { day in
+                                    Text(day.shortName)
+                                }
+                            }.frame(maxWidth: .infinity, alignment: .leading)
+                        } else {
+                            Text(medication.schedule.frequency.title)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        
+                        if (medication.schedule.frequency != .asNeeded) {
+                            HStack {
+                                ForEach(medication.schedule.times, id: \.self) { date in
+                                    Text(date, format: .dateTime.hour().minute())
+                                }
+                            }.frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }.frame(maxWidth: .infinity, alignment: .leading)
+                
+                    
+                    
+                    
                     Text("Notes")
                         .bold()
                         .padding(.bottom, 6)
