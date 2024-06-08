@@ -77,20 +77,14 @@
 			isa = PBXGroup;
 			children = (
 				F51F1C752C009B1500F969F4 /* MedicationTrackerApp.swift */,
-				F51F1C882C009C0400F969F4 /* CheckboxToggle.swift */,
-				F5226EA02C058D6400288612 /* DayPicker.swift */,
-				F5226EA22C058DCD00288612 /* DayEnum.swift */,
-				F5C6A3862C11F42600E9CFBA /* UnitEnum.swift */,
-				F5226EA42C05C4C300288612 /* ScheduledFrequency.swift */,
-				F5C6A3882C120A6F00E9CFBA /* MedicationStore.swift */,
-				F51F1C862C009C0400F969F4 /* Medication.swift */,
-				F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */,
-				F51F1C872C009C0400F969F4 /* MedicationDetailView.swift */,
-				F51F1C892C009C0400F969F4 /* MedicationEditor.swift */,
-				F51F1C842C009C0400F969F4 /* MedicationListRow.swift */,
-				F51F1C852C009C0400F969F4 /* MedicationsListView.swift */,
-				F51F1C792C009B1600F969F4 /* Assets.xcassets */,
+				F584AD312C145D8800B6BB8A /* List */,
+				F584AD302C145D7C00B6BB8A /* Detail */,
+				F584AD2F2C145D6D00B6BB8A /* Editor */,
+				F584AD2E2C145C6300B6BB8A /* ViewModels */,
+				F584AD2C2C14598600B6BB8A /* Models */,
+				F584AD322C145D9500B6BB8A /* Utilities */,
 				F51F1C7B2C009B1600F969F4 /* Preview Content */,
+				F51F1C792C009B1600F969F4 /* Assets.xcassets */,
 			);
 			path = "Medication-Tracker";
 			sourceTree = "<group>";
@@ -101,6 +95,68 @@
 				F51F1C7C2C009B1600F969F4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F584AD2C2C14598600B6BB8A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F51F1C862C009C0400F969F4 /* Medication.swift */,
+				F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */,
+				F584AD2D2C145B3200B6BB8A /* Enums */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F584AD2D2C145B3200B6BB8A /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				F5226EA42C05C4C300288612 /* ScheduledFrequency.swift */,
+				F5226EA22C058DCD00288612 /* DayEnum.swift */,
+				F5C6A3862C11F42600E9CFBA /* UnitEnum.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		F584AD2E2C145C6300B6BB8A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F5C6A3882C120A6F00E9CFBA /* MedicationStore.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F584AD2F2C145D6D00B6BB8A /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				F51F1C892C009C0400F969F4 /* MedicationEditor.swift */,
+				F5226EA02C058D6400288612 /* DayPicker.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		F584AD302C145D7C00B6BB8A /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				F51F1C872C009C0400F969F4 /* MedicationDetailView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		F584AD312C145D8800B6BB8A /* List */ = {
+			isa = PBXGroup;
+			children = (
+				F51F1C852C009C0400F969F4 /* MedicationsListView.swift */,
+				F51F1C842C009C0400F969F4 /* MedicationListRow.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		F584AD322C145D9500B6BB8A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F51F1C882C009C0400F969F4 /* CheckboxToggle.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
