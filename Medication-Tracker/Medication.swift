@@ -7,19 +7,18 @@
 
 import Foundation
 
-// TODO: I might need to write a custom encoder and decoder.
-
-class Medication: Identifiable, ObservableObject, Equatable, CustomStringConvertible {
+@Observable
+class Medication: Identifiable, Codable, Equatable, CustomStringConvertible {
     public let id: UUID
     
-    @Published public var name: String
-    @Published public var strength: Int
-    @Published public var unit: Unit
-    @Published public var note: String
-    @Published public var schedule: ScheduleConfiguration
+    public var name: String
+    public var strength: Int
+    public var unit: Unit
+    public var note: String
+    public var schedule: ScheduleConfiguration
     
     static let quantityRange = 0...1000
-    @Published public var remainingQuantity: Int {
+    public var remainingQuantity: Int {
         didSet(value) {
             if value < Medication.quantityRange.lowerBound {
                 remainingQuantity = Medication.quantityRange.lowerBound
@@ -39,19 +38,6 @@ class Medication: Identifiable, ObservableObject, Equatable, CustomStringConvert
         self.schedule = schedule
     }
     
-    var description: String {
-        "Medication(id: \(id), name: \(name), dosage: \(strength) \(unit.rawValue), remaining quantity: \(remainingQuantity), note: \(note), schedule: \(schedule)"
-    }
-    
-    static func == (lhs: Medication, rhs: Medication) -> Bool {
-        return lhs.name == rhs.name &&
-               lhs.strength == rhs.strength &&
-               lhs.unit == rhs.unit &&
-               lhs.remainingQuantity == rhs.remainingQuantity &&
-               lhs.note == rhs.note &&
-               lhs.schedule == rhs.schedule
-    }
-    
     /// Creates a deep copy of the medication object.
     func copy() -> Medication {
         return Medication(id: id,
@@ -63,13 +49,45 @@ class Medication: Identifiable, ObservableObject, Equatable, CustomStringConvert
                           schedule: schedule
         )
     }
-}
-
-
-extension Medication {
-    static var sampleData: [Medication] = [
-        Medication(name: "ADHD Medication", strength: 54, quantity: 25),
-        Medication(name: "Isotretinoin", strength: 40, quantity: 57, note: "To help acne. Take twice daily with meals (it binds to fat in foods)."),
-        Medication(name: "Ibuprofen", strength: 25, note: "Oh no! I have a headace, lol.")
-    ]
+    
+    static func == (lhs: Medication, rhs: Medication) -> Bool {
+        return lhs.name == rhs.name &&
+               lhs.strength == rhs.strength &&
+               lhs.unit == rhs.unit &&
+               lhs.remainingQuantity == rhs.remainingQuantity &&
+               lhs.note == rhs.note &&
+               lhs.schedule == rhs.schedule
+    }
+    
+    var description: String {
+        "Medication(id: \(id), name: \(name), dosage: \(strength) \(unit.rawValue), remaining quantity: \(remainingQuantity), note: \(note), schedule: \(schedule)"
+    }
+    
+    // MARK: Custom Codable Conformance.
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, strength, unit, note, remainingQuantity, schedule
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(UUID.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        strength = try values.decode(Int.self, forKey: .strength)
+        unit = try values.decode(Unit.self, forKey: .unit)
+        note = try values.decode(String.self, forKey: .note)
+        remainingQuantity = try values.decode(Int.self, forKey: .remainingQuantity)
+        schedule = try values.decode(ScheduleConfiguration.self, forKey: .schedule)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(strength, forKey: .strength)
+        try container.encode(unit, forKey: .unit)
+        try container.encode(note, forKey: .note)
+        try container.encode(remainingQuantity, forKey: .remainingQuantity)
+        try container.encode(schedule, forKey: .schedule)
+    }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MedicationEditor: View {
     /// The state model for the medication entry being edited or created.
-    @StateObject var medication: Medication
+    @State var medication: Medication
     /// The state model for the medication schedule config being edited or created.
     @State var schedule: ScheduleConfiguration
     /// A callback to handle the toolbar button save logic.
@@ -161,8 +161,8 @@ struct MedicationEditor: View {
 
 #Preview {
     MedicationEditor(
-        medication: MedicationStore.shared.medications[0],
-        schedule: MedicationStore.shared.medications[0].schedule,
+        medication: MedicationStore.sampleData[0],
+        schedule: MedicationStore.sampleData[0].schedule,
         onSave: { _, _ in },
         didChange: { _,_  in return false }
     )

@@ -33,5 +33,5 @@ struct MedicationListRow: View {
 
 
 #Preview {
-    MedicationListRow(medication: .constant(MedicationStore.shared.medications[0]))
+    MedicationListRow(medication: .constant(MedicationStore.sampleData[0]))
 }

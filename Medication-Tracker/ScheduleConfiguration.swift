@@ -20,13 +20,13 @@ struct ScheduleConfiguration: Identifiable, Codable, Equatable, CustomStringConv
         self.times = times
     }
     
-    var description: String {
-        "ScheduleConfiguration(id: \(id), frequency: \(frequency), days: \(String(describing: days)), times: \(String(describing: times)))"
-    }
-    
     static func == (lhs: ScheduleConfiguration, rhs: ScheduleConfiguration) -> Bool {
         return lhs.frequency == rhs.frequency &&
                lhs.days == rhs.days &&
                lhs.times == rhs.times
+    }
+    
+    var description: String {
+        "ScheduleConfiguration(id: \(id), frequency: \(frequency), days: \(String(describing: days)), times: \(String(describing: times)))"
     }
 }

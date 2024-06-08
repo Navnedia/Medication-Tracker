@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MedicationsListView: View {
     /// The state model array of medication entries.
-    @State var medications: [Medication]
+    @Binding var medications: [Medication]
     /// A flag state to control if the medication adding panel is being presented.
     @State private var AddPanelVisible: Bool = false
     
@@ -75,5 +75,5 @@ struct MedicationsListView: View {
 
 
 #Preview {
-    MedicationsListView(medications: MedicationStore.shared.medications)
+    MedicationsListView(medications: .constant(MedicationStore.sampleData))
 }

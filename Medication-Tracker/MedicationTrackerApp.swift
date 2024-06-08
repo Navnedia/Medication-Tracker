@@ -9,13 +9,31 @@ import SwiftUI
 
 @main
 struct MedicationTrackerApp: App {
+    @State private var store = MedicationStore.shared
+    /// An envirornment state to monitor application scene phase.
+    @Environment(\.scenePhase) private var scenePhase
+    
     var body: some Scene {
         WindowGroup {
             TabView {
-                MedicationsListView(medications: MedicationStore.shared.medications)
+                MedicationsListView(medications: $store.medications)
                     .tabItem {
                         Label("Medications", systemImage: "pill.fill")
                     }
+            }
+            
+            .task {
+                // On application load: run an async task to load in data from file.
+                await store.load()
+            }
+        }
+        
+        .onChange(of: scenePhase) {
+            // When the application becomes inactive/closes: run an async task to save data to file.
+            if scenePhase == .inactive {
+                Task {
+                    await store.save()
+                }
             }
         }
     }

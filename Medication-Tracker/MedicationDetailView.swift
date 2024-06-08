@@ -76,5 +76,5 @@ struct MedicationDetailView: View {
 
 
 #Preview {
-    MedicationDetailView(medication: .constant(MedicationStore.shared.medications[0]))
+    MedicationDetailView(medication: .constant(MedicationStore.sampleData[0]))
 }
