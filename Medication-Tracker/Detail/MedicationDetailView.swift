@@ -41,39 +41,42 @@ struct MedicationDetailView: View {
                 .background(Color(.blue).opacity(0.2))
                 
                 VStack(spacing: 6) {
-                    VStack(spacing: 6) {
-                        Text("Reminders")
-                            .bold()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if (medication.schedule.frequency == .specificDays) {
-                            HStack {
-                                ForEach(medication.schedule.days, id: \.self) { day in
-                                    Text(day.shortName)
-                                }
-                            }.frame(maxWidth: .infinity, alignment: .leading)
-                        } else {
-                            Text(medication.schedule.frequency.title)
+                    GroupBox {
+                        VStack(spacing: 6) {
+                            Text("Schedule")
+                                .bold()
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        
-                        if (medication.schedule.frequency != .asNeeded) {
-                            HStack {
-                                ForEach(medication.schedule.times, id: \.self) { date in
-                                    Text(date, format: .dateTime.hour().minute())
+                            if (medication.schedule.frequency == .specificDays) {
+                                HStack {
+                                    ForEach(medication.schedule.days, id: \.self) { day in
+                                        Text(day.shortName)
+                                    }
+                                    Spacer()
                                 }
-                            }.frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                
+                            } else {
+                                Text(medication.schedule.frequency.title)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            
+                            if (medication.schedule.frequency != .asNeeded) {
+                                HStack {
+                                    ForEach(medication.schedule.times, id: \.self) { date in
+                                        Text(date, format: .dateTime.hour().minute())
+                                    }
+                                    Spacer()
+                                }
+                            }
+                        }.frame(maxWidth: .infinity, alignment: .leading)
+                    }
                     
-                    
-                    
-                    Text("Notes")
-                        .bold()
-                        .padding(.bottom, 6)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(medication.note)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    GroupBox {
+                        Text("Notes")
+                            .bold()
+                            .padding(.bottom, 6)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(medication.note)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }.padding()
                 
                 Spacer()
