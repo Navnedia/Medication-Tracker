@@ -63,31 +63,14 @@ class Medication: Identifiable, Codable, Equatable, CustomStringConvertible {
         "Medication(id: \(id), name: \(name), dosage: \(strength) \(unit.rawValue), remaining quantity: \(remainingQuantity), note: \(note), schedule: \(schedule)"
     }
     
-    // MARK: Custom Codable Conformance.
-    
+    // MARK: Custom codable conformance to work with observer.
     enum CodingKeys: String, CodingKey {
-        case id, name, strength, unit, note, remainingQuantity, schedule
-    }
-    
-    required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decode(UUID.self, forKey: .id)
-        name = try values.decode(String.self, forKey: .name)
-        strength = try values.decode(Int.self, forKey: .strength)
-        unit = try values.decode(Unit.self, forKey: .unit)
-        note = try values.decode(String.self, forKey: .note)
-        remainingQuantity = try values.decode(Int.self, forKey: .remainingQuantity)
-        schedule = try values.decode(ScheduleConfiguration.self, forKey: .schedule)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(name, forKey: .name)
-        try container.encode(strength, forKey: .strength)
-        try container.encode(unit, forKey: .unit)
-        try container.encode(note, forKey: .note)
-        try container.encode(remainingQuantity, forKey: .remainingQuantity)
-        try container.encode(schedule, forKey: .schedule)
+        case id
+        case _name = "name"
+        case _strength = "strength"
+        case _unit = "unit"
+        case _note = "note"
+        case _schedule = "schedule"
+        case _remainingQuantity = "remainingQuantity"
     }
 }
