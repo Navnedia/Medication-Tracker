@@ -16,6 +16,7 @@ class Medication: Identifiable, Codable, Equatable, CustomStringConvertible {
     public var unit: Unit
     public var note: String
     public var schedule: ScheduleConfiguration
+    public var logs: [MedicationLog]
     
     static let quantityRange = 0...1000
     public var remainingQuantity: Int {
@@ -28,7 +29,7 @@ class Medication: Identifiable, Codable, Equatable, CustomStringConvertible {
         }
     }
     
-    init(id: UUID = UUID(), name: String = "", strength: Int = 0, unit: Unit = .mg, quantity: Int = 1, note: String = "", schedule: ScheduleConfiguration = ScheduleConfiguration()) {
+    init(id: UUID = UUID(), name: String = "", strength: Int = 0, unit: Unit = .mg, quantity: Int = 1, note: String = "", schedule: ScheduleConfiguration = ScheduleConfiguration(), logs: [MedicationLog] = []) {
         self.id = id
         self.name = name
         self.strength = strength
@@ -36,6 +37,7 @@ class Medication: Identifiable, Codable, Equatable, CustomStringConvertible {
         self.remainingQuantity = quantity
         self.note = note
         self.schedule = schedule
+        self.logs = logs
     }
     
     /// Creates a deep copy of the medication object.
@@ -46,7 +48,8 @@ class Medication: Identifiable, Codable, Equatable, CustomStringConvertible {
                           unit: unit,
                           quantity: remainingQuantity,
                           note: note,
-                          schedule: schedule
+                          schedule: schedule,
+                          logs: logs
         )
     }
     
@@ -60,7 +63,7 @@ class Medication: Identifiable, Codable, Equatable, CustomStringConvertible {
     }
     
     var description: String {
-        "Medication(id: \(id), name: \(name), dosage: \(strength) \(unit.rawValue), remaining quantity: \(remainingQuantity), note: \(note), schedule: \(schedule)"
+        "Medication(id: \(id), name: \(name), dosage: \(strength) \(unit.rawValue), remaining quantity: \(remainingQuantity), note: \(note), schedule: \(schedule), logs: \(logs)"
     }
     
     // MARK: Custom codable conformance to work with observer.
@@ -71,6 +74,7 @@ class Medication: Identifiable, Codable, Equatable, CustomStringConvertible {
         case _unit = "unit"
         case _note = "note"
         case _schedule = "schedule"
+        case _logs = "logs"
         case _remainingQuantity = "remainingQuantity"
     }
 }
