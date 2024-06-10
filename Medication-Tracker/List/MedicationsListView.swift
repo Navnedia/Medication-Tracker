@@ -25,8 +25,12 @@ struct MedicationsListView: View {
                     .onMove { from, to in
                         medications.move(fromOffsets: from, toOffset: to)
                     }
-                    .onDelete { index in
-                        medications.remove(atOffsets: index)
+                    .onDelete { indexes in
+                        for i in indexes {
+                            NotificationsManager.shared.removeScheduledReminders(
+                                for: medications[i].id.uuidString)
+                        }
+                        medications.remove(atOffsets: indexes)
                     }
                     
                 }
@@ -64,6 +68,10 @@ struct MedicationsListView: View {
                     // Append the new medication into the list.
                     medication.schedule = schedule
                     medications.append(medication)
+                
+                    Task {
+                        await NotificationsManager.shared.addScheduledReminders(for: medication)
+                    }
                 }, didChange: { medication, schedule in
                     // Determine if changes have been made from a blank medication object state.
                     return medication != Medication() || schedule != ScheduleConfiguration()

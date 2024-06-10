@@ -77,6 +77,13 @@ class MedicationStore {
         }
     }
     
+    func getMedication(forId id: String) async -> Medication? {
+        let medicationId = UUID(uuidString: id)
+        return MedicationStore.shared.medications.first { med in
+            med.id == medicationId
+        }
+    }
+    
     /// Asynchronously update the filteredLogs view model property to reflect only the scheduled logs for the specified date.
     func filterLogs(by date: Date) async {
         let filterTask = Task<[MedicationLog], Error> {

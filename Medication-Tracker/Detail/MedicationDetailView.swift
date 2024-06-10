@@ -96,6 +96,10 @@ struct MedicationDetailView: View {
                     editedMedication.schedule = editedSchedule
                     medication = editedMedication
                     medication.schedule.updated = Date.now
+                
+                    Task {
+                        await NotificationsManager.shared.refreshScheduledReminders(for: medication)
+                    }
                 }, didChange: { editingMedication, editingSchedule in
                     // Determine if changes have been made from the original medication object state.
                     return editingMedication != medication || editingSchedule != medication.schedule

@@ -22,6 +22,7 @@
 		F56AA81F2C0555DB00639605 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F56AA81E2C0555DB00639605 /* .gitignore */; };
 		F584AD352C15139B00B6BB8A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F584AD342C15139B00B6BB8A /* HomeView.swift */; };
 		F584AD382C15534300B6BB8A /* MedicationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F584AD372C15534300B6BB8A /* MedicationLog.swift */; };
+		F584AD3A2C16BB8400B6BB8A /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F584AD392C16BB8400B6BB8A /* NotificationsManager.swift */; };
 		F5C6A3872C11F42600E9CFBA /* UnitEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C6A3862C11F42600E9CFBA /* UnitEnum.swift */; };
 		F5C6A3892C120A6F00E9CFBA /* MedicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C6A3882C120A6F00E9CFBA /* MedicationStore.swift */; };
 		F5E43AAF2C06DC0F003406F7 /* ScheduleConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */; };
@@ -44,6 +45,8 @@
 		F56AA81E2C0555DB00639605 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F584AD342C15139B00B6BB8A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F584AD372C15534300B6BB8A /* MedicationLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationLog.swift; sourceTree = "<group>"; };
+		F584AD392C16BB8400B6BB8A /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		F584AD3B2C17941E00B6BB8A /* Medication-Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Medication-Tracker.entitlements"; sourceTree = "<group>"; };
 		F5C6A3862C11F42600E9CFBA /* UnitEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitEnum.swift; sourceTree = "<group>"; };
 		F5C6A3882C120A6F00E9CFBA /* MedicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationStore.swift; sourceTree = "<group>"; };
 		F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfiguration.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		F51F1C742C009B1500F969F4 /* Medication-Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				F584AD3B2C17941E00B6BB8A /* Medication-Tracker.entitlements */,
 				F51F1C752C009B1500F969F4 /* MedicationTrackerApp.swift */,
 				F584AD362C1513A300B6BB8A /* Home */,
 				F584AD312C145D8800B6BB8A /* List */,
@@ -160,6 +164,7 @@
 		F584AD322C145D9500B6BB8A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F584AD392C16BB8400B6BB8A /* NotificationsManager.swift */,
 				F51F1C882C009C0400F969F4 /* CheckboxToggle.swift */,
 			);
 			path = Utilities;
@@ -254,6 +259,7 @@
 				F5E43AAF2C06DC0F003406F7 /* ScheduleConfiguration.swift in Sources */,
 				F5226EA52C05C4C300288612 /* ScheduledFrequency.swift in Sources */,
 				F51F1C762C009B1500F969F4 /* MedicationTrackerApp.swift in Sources */,
+				F584AD3A2C16BB8400B6BB8A /* NotificationsManager.swift in Sources */,
 				F51F1C902C009C0400F969F4 /* MedicationEditor.swift in Sources */,
 				F5226EA12C058D6400288612 /* DayPicker.swift in Sources */,
 				F51F1C8C2C009C0400F969F4 /* MedicationsListView.swift in Sources */,
@@ -389,12 +395,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Medication-Tracker/Medication-Tracker.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Medication-Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = BTW74S93C5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Medication-Tracker/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Med Track";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -409,7 +418,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avandeke.Medication-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -423,12 +433,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Medication-Tracker/Medication-Tracker.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Medication-Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = BTW74S93C5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Medication-Tracker/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Med Track";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -443,7 +456,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avandeke.Medication-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
