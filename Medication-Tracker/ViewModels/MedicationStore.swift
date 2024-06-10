@@ -18,6 +18,8 @@ class MedicationStore {
     /// The medication objects loaded into the data store.
     public var medications: [Medication] = []
     
+    public var filteredLogs: [MedicationLog] = []
+    
     // Hidden constructor for singleton pattern.
     private init() { }
     
@@ -72,6 +74,49 @@ class MedicationStore {
             } catch {
                 print("Save failed to encode and write medication data to file: \(error)")
             }
+        }
+    }
+    
+    /// Asynchronously update the filteredLogs view model property to reflect only the scheduled logs for the specified date.
+    func filterLogs(by date: Date) async {
+        let filterTask = Task<[MedicationLog], Error> {
+            let filtered = medications.map { med in
+                let calender = Calendar.current
+                
+                // Filter logs for the current medication to only those on the selected day.
+                var matchingLogsForMedication = med.logs.filter { log in
+                    calender.compare(date, to: log.scheduled, toGranularity: .day) == .orderedSame
+                }.map { log in
+                    log.setMedication(med) // Add medication reference to the log because this value is not encoded/decoded.
+                }
+                
+                // If the selected filter date is before when the medication schedule was last updated, then we won't modify the logs.
+                if (calender.compare(date, to: med.schedule.updated, toGranularity: .day) == .orderedAscending) {
+                    return matchingLogsForMedication
+                }
+                // Get a list of matching scheduled time data objects for the selected date.
+                let scheduledTimes = med.schedule.matchingScheduleTimes(for: date)
+                // Add missing schedule log entries on demand:
+                for time in scheduledTimes {
+                    let containsLog = matchingLogsForMedication.contains { log in
+                        log.scheduled == time
+                    }
+                    // Create and add missing logs
+                    if (!containsLog) {
+                        let missingLog = MedicationLog(medication: med, scheduled: time)
+                        med.logs.append(missingLog)
+                        matchingLogsForMedication.append(missingLog)
+                    }
+                }
+                
+                return matchingLogsForMedication
+            }.flatMap {$0} // Merge all the log lists for each medication.
+            
+            return filtered.sorted(by: <) // Sort the full day logs list in ascending order.
+        }
+        
+        if let filtered = try? await filterTask.value {
+            self.filteredLogs = filtered
         }
     }
 }

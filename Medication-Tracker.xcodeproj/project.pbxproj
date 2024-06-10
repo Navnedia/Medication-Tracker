@@ -20,6 +20,8 @@
 		F5226EA32C058DCD00288612 /* DayEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5226EA22C058DCD00288612 /* DayEnum.swift */; };
 		F5226EA52C05C4C300288612 /* ScheduledFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5226EA42C05C4C300288612 /* ScheduledFrequency.swift */; };
 		F56AA81F2C0555DB00639605 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F56AA81E2C0555DB00639605 /* .gitignore */; };
+		F584AD352C15139B00B6BB8A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F584AD342C15139B00B6BB8A /* HomeView.swift */; };
+		F584AD382C15534300B6BB8A /* MedicationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F584AD372C15534300B6BB8A /* MedicationLog.swift */; };
 		F5C6A3872C11F42600E9CFBA /* UnitEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C6A3862C11F42600E9CFBA /* UnitEnum.swift */; };
 		F5C6A3892C120A6F00E9CFBA /* MedicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C6A3882C120A6F00E9CFBA /* MedicationStore.swift */; };
 		F5E43AAF2C06DC0F003406F7 /* ScheduleConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */; };
@@ -40,6 +42,8 @@
 		F5226EA22C058DCD00288612 /* DayEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEnum.swift; sourceTree = "<group>"; };
 		F5226EA42C05C4C300288612 /* ScheduledFrequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledFrequency.swift; sourceTree = "<group>"; };
 		F56AA81E2C0555DB00639605 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		F584AD342C15139B00B6BB8A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F584AD372C15534300B6BB8A /* MedicationLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationLog.swift; sourceTree = "<group>"; };
 		F5C6A3862C11F42600E9CFBA /* UnitEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitEnum.swift; sourceTree = "<group>"; };
 		F5C6A3882C120A6F00E9CFBA /* MedicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationStore.swift; sourceTree = "<group>"; };
 		F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfiguration.swift; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				F51F1C752C009B1500F969F4 /* MedicationTrackerApp.swift */,
+				F584AD362C1513A300B6BB8A /* Home */,
 				F584AD312C145D8800B6BB8A /* List */,
 				F584AD302C145D7C00B6BB8A /* Detail */,
 				F584AD2F2C145D6D00B6BB8A /* Editor */,
@@ -101,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				F51F1C862C009C0400F969F4 /* Medication.swift */,
+				F584AD372C15534300B6BB8A /* MedicationLog.swift */,
 				F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */,
 				F584AD2D2C145B3200B6BB8A /* Enums */,
 			);
@@ -157,6 +163,14 @@
 				F51F1C882C009C0400F969F4 /* CheckboxToggle.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F584AD362C1513A300B6BB8A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F584AD342C15139B00B6BB8A /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,9 +245,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5C6A3872C11F42600E9CFBA /* UnitEnum.swift in Sources */,
+				F584AD352C15139B00B6BB8A /* HomeView.swift in Sources */,
 				F51F1C8F2C009C0400F969F4 /* CheckboxToggle.swift in Sources */,
 				F5C6A3892C120A6F00E9CFBA /* MedicationStore.swift in Sources */,
 				F51F1C8D2C009C0400F969F4 /* Medication.swift in Sources */,
+				F584AD382C15534300B6BB8A /* MedicationLog.swift in Sources */,
 				F51F1C8B2C009C0400F969F4 /* MedicationListRow.swift in Sources */,
 				F5E43AAF2C06DC0F003406F7 /* ScheduleConfiguration.swift in Sources */,
 				F5226EA52C05C4C300288612 /* ScheduledFrequency.swift in Sources */,

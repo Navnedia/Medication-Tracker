@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class MedicationLog: Identifiable, Codable, CustomStringConvertible {
+class MedicationLog: Identifiable, Codable, Comparable, CustomStringConvertible {
     public let id: UUID
     
     public weak var medication: Medication?
@@ -27,6 +27,14 @@ class MedicationLog: Identifiable, Codable, CustomStringConvertible {
     public func setMedication(_ medication: Medication? = nil) -> MedicationLog {
         self.medication = medication
         return self
+    }
+    
+    static func < (lhs: MedicationLog, rhs: MedicationLog) -> Bool {
+        return lhs.scheduled < rhs.scheduled
+    }
+    
+    static func == (lhs: MedicationLog, rhs: MedicationLog) -> Bool {
+        return lhs.scheduled == rhs.scheduled
     }
     
     var description: String {

@@ -95,6 +95,7 @@ struct MedicationDetailView: View {
                     // Copy over saved changes to the stored medication entry.
                     editedMedication.schedule = editedSchedule
                     medication = editedMedication
+                    medication.schedule.updated = Date.now
                 }, didChange: { editingMedication, editingSchedule in
                     // Determine if changes have been made from the original medication object state.
                     return editingMedication != medication || editingSchedule != medication.schedule

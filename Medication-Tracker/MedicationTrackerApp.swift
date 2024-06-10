@@ -16,6 +16,11 @@ struct MedicationTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
+                HomeView(logsForDay: $store.filteredLogs)
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
+                
                 MedicationsListView(medications: $store.medications)
                     .tabItem {
                         Label("Medications", systemImage: "pill.fill")
