@@ -16,34 +16,77 @@ struct HomeView: View {
         return start! ... Date.now
     }()
     
+    @State private var logConfirmAlert: Bool = false
+    @State private var selectedLog: MedicationLog?
+    
     var body: some View {
         VStack {
-            DatePicker("Date", selection: $date, in: dateRange, displayedComponents: .date)
-                .datePickerStyle(.graphical)
-                .id(date)
+            Group {
+                DatePicker("Medications for", selection: $date, in: dateRange, displayedComponents: .date)
+                    .datePickerStyle(.compact)
+                    .bold()
+                    .id(date)
+                
+                    .onChange(of: date) {
+                        triggerFilterUpdate()
+                    }
+            }
+            .padding()
+            .background(Color.blue.opacity(0.2).ignoresSafeArea(edges: .all))
             
-                .onChange(of: date) {
-                    triggerFilterUpdate()
-                }
-            
-            List {
-                ForEach($logsForDay) { $log in
-                    VStack {
-                        Text($log.wrappedValue.medication?.name ?? "Name")
-                        Text(dateFormatted($log.wrappedValue.scheduled))
-                        
-                        Toggle(isOn: $log.isTaken) {
-                            Text("")
-                        }
+            if (!$logsForDay.isEmpty) {
+                List {
+                    ForEach($logsForDay) { $log in
+                        MedicationLogRow(log: $log)
+                            .listRowSeparator(.hidden)
+                            .onTapGesture {
+                                selectedLog = log
+                                logConfirmAlert = true
+                            }
                     }
                 }
+                .listStyle(.plain)
+            } else {
+                Spacer()
+                Text("Nothing here to see")
+                    .bold()
             }
-            .listStyle(.plain)
             
             Spacer()
         }
-        .padding()
-//        .frame(maxHeight: .infinity, alignment: .top)
+        
+        .confirmationDialog("", isPresented: $logConfirmAlert, presenting: selectedLog,
+            actions: { log in
+                if (log.isTaken == false) {
+                    Button("Mark as Taken") {
+                        log.takenTimestamp = Date.now
+                        log.isTaken = true
+                        
+                        if let medication = log.medication {
+                            medication.remainingQuantity = medication.remainingQuantity - 1
+                        }
+                    }
+                } else {
+                    Button("Mark not Taken") {
+                        log.takenTimestamp = nil
+                        log.isTaken = false
+                        
+                        if let medication = log.medication {
+                            medication.remainingQuantity = medication.remainingQuantity + 1
+                        }
+                    }
+                }
+            
+                Button("Cancel", role: .cancel, action: {})
+            }, message: { log in
+                if (log.isTaken == false) {
+                    Text("")
+                } else {
+                    Text("")
+                }
+            }
+        )
+        .sensoryFeedback(.success, trigger: logConfirmAlert)
         
         .task {
             triggerFilterUpdate()

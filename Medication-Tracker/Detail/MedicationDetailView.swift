@@ -13,33 +13,35 @@ struct MedicationDetailView: View {
     /// A flag state to control if the medication editing panel is being presented.
     @State private var editPanelVisible: Bool = false
     
+    @State private var logConfirmAlert: Bool = false
+    
     var body: some View {
-//        ScrollView {
-            VStack {
-                VStack {
-                    Text(medication.name)
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.bottom, 6)
-                    
-                    Text("\(medication.strength) \(medication.unit.rawValue)")
-                    HStack {
-                        Text("Remaining Quantity: ")
-                            .bold()
-                        Text("\(medication.remainingQuantity)")
-                    }
+        VStack {
+            Text(medication.name)
+                .font(.largeTitle)
+                .bold()
+                .padding(.bottom, 6)
+            
+            Text("\(medication.strength) \(medication.unit.rawValue)")
+            HStack {
+                Text("Remaining Quantity: ")
+                    .bold()
+                Text("\(medication.remainingQuantity)")
+            }
 
-                    Divider()
-                        .frame(height: 2)
-                        .overlay(.text)
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 16)
-                    
-                    Spacer()
-                }
-                .frame(height: 108)
-                .background(Color(.blue).opacity(0.2))
-                
+            Divider()
+                .frame(height: 2)
+                .overlay(.text)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 16)
+            
+            Spacer()
+        }
+        .frame(height: 108)
+        .background(Color(.blue).opacity(0.2))
+        
+        ScrollView {
+//            VStack {
                 VStack(spacing: 6) {
                     GroupBox {
                         VStack(spacing: 6) {
@@ -80,13 +82,27 @@ struct MedicationDetailView: View {
                 }.padding()
                 
                 Spacer()
-            }
+//            }
             .toolbar {
-                Button("Edit") {
-                    editPanelVisible = true // Trigger presenting edit panel.
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Edit") {
+                        editPanelVisible = true // Trigger presenting edit panel.
+                    }
+                }
+                
+                ToolbarItem(placement: .bottomBar) {
+                    Button(action: {
+                        logConfirmAlert = true
+                    }, label: {
+                        Image(systemName: "pill.circle.fill")
+                        Text("Log Dose")
+                    })
+                    .buttonStyle(.bordered)
+                    .font(.title2)
                 }
             }
-//        }
+            .toolbar(.hidden, for: .tabBar)
+        }
         
         .fullScreenCover(isPresented: $editPanelVisible) {
             // Show editor with using copies of current state:
@@ -106,6 +122,26 @@ struct MedicationDetailView: View {
                 }
             )
         }
+        
+        .confirmationDialog("", isPresented: $logConfirmAlert,
+            actions: {
+                Button("Add Dose") {
+                    let log = MedicationLog(
+                        medication: medication,
+                        scheduled: Date.now,
+                        taken: true,
+                        timestamp: Date.now
+                    )
+                    
+                    medication.logs.append(log)
+                    medication.remainingQuantity = medication.remainingQuantity - 1
+                }
+            
+                Button("Cancel", role: .cancel, action: {})
+            }, message: {
+                Text("")
+            }
+        )
     }
 }
 

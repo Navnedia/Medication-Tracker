@@ -20,10 +20,10 @@ class Medication: Identifiable, Codable, Equatable, CustomStringConvertible {
     
     static let quantityRange = 0...1000
     public var remainingQuantity: Int {
-        didSet(value) {
-            if value < Medication.quantityRange.lowerBound {
+        didSet {
+            if remainingQuantity < Medication.quantityRange.lowerBound {
                 remainingQuantity = Medication.quantityRange.lowerBound
-            } else if  value > Medication.quantityRange.upperBound {
+            } else if  remainingQuantity > Medication.quantityRange.upperBound {
                 remainingQuantity = Medication.quantityRange.upperBound
             }
         }

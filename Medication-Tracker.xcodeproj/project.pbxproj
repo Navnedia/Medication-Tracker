@@ -23,6 +23,7 @@
 		F584AD352C15139B00B6BB8A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F584AD342C15139B00B6BB8A /* HomeView.swift */; };
 		F584AD382C15534300B6BB8A /* MedicationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F584AD372C15534300B6BB8A /* MedicationLog.swift */; };
 		F584AD3A2C16BB8400B6BB8A /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F584AD392C16BB8400B6BB8A /* NotificationsManager.swift */; };
+		F599F5FD2C17C26000DB9296 /* MedicationLogRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599F5FC2C17C26000DB9296 /* MedicationLogRow.swift */; };
 		F5C6A3872C11F42600E9CFBA /* UnitEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C6A3862C11F42600E9CFBA /* UnitEnum.swift */; };
 		F5C6A3892C120A6F00E9CFBA /* MedicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C6A3882C120A6F00E9CFBA /* MedicationStore.swift */; };
 		F5E43AAF2C06DC0F003406F7 /* ScheduleConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */; };
@@ -47,6 +48,7 @@
 		F584AD372C15534300B6BB8A /* MedicationLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationLog.swift; sourceTree = "<group>"; };
 		F584AD392C16BB8400B6BB8A /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		F584AD3B2C17941E00B6BB8A /* Medication-Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Medication-Tracker.entitlements"; sourceTree = "<group>"; };
+		F599F5FC2C17C26000DB9296 /* MedicationLogRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationLogRow.swift; sourceTree = "<group>"; };
 		F5C6A3862C11F42600E9CFBA /* UnitEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitEnum.swift; sourceTree = "<group>"; };
 		F5C6A3882C120A6F00E9CFBA /* MedicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationStore.swift; sourceTree = "<group>"; };
 		F5E43AAE2C06DC0F003406F7 /* ScheduleConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfiguration.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				F584AD342C15139B00B6BB8A /* HomeView.swift */,
+				F599F5FC2C17C26000DB9296 /* MedicationLogRow.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				F584AD382C15534300B6BB8A /* MedicationLog.swift in Sources */,
 				F51F1C8B2C009C0400F969F4 /* MedicationListRow.swift in Sources */,
 				F5E43AAF2C06DC0F003406F7 /* ScheduleConfiguration.swift in Sources */,
+				F599F5FD2C17C26000DB9296 /* MedicationLogRow.swift in Sources */,
 				F5226EA52C05C4C300288612 /* ScheduledFrequency.swift in Sources */,
 				F51F1C762C009B1500F969F4 /* MedicationTrackerApp.swift in Sources */,
 				F584AD3A2C16BB8400B6BB8A /* NotificationsManager.swift in Sources */,
