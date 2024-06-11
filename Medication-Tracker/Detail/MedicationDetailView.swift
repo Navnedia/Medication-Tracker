@@ -123,9 +123,9 @@ struct MedicationDetailView: View {
             )
         }
         
-        .confirmationDialog("", isPresented: $logConfirmAlert,
+        .confirmationDialog("Add Dose", isPresented: $logConfirmAlert,
             actions: {
-                Button("Add Dose") {
+                Button("Log Dose Taken") {
                     let log = MedicationLog(
                         medication: medication,
                         scheduled: Date.now,
@@ -139,7 +139,7 @@ struct MedicationDetailView: View {
             
                 Button("Cancel", role: .cancel, action: {})
             }, message: {
-                Text("")
+                Text("Would you like to log a dose of \(medication.name) (\(medication.strength) \(medication.unit.rawValue)) for right now?")
             }
         )
     }

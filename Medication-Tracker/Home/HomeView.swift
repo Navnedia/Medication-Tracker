@@ -55,37 +55,29 @@ struct HomeView: View {
             Spacer()
         }
         
-        .confirmationDialog("", isPresented: $logConfirmAlert, presenting: selectedLog,
-            actions: { log in
-                if (log.isTaken == false) {
-                    Button("Mark as Taken") {
-                        log.takenTimestamp = Date.now
-                        log.isTaken = true
-                        
-                        if let medication = log.medication {
-                            medication.remainingQuantity = medication.remainingQuantity - 1
-                        }
-                    }
-                } else {
-                    Button("Mark not Taken") {
-                        log.takenTimestamp = nil
-                        log.isTaken = false
-                        
-                        if let medication = log.medication {
-                            medication.remainingQuantity = medication.remainingQuantity + 1
-                        }
+        .confirmationDialog("Update Log", isPresented: $logConfirmAlert, presenting: selectedLog) { log in
+            if (log.isTaken == false) {
+                Button("Mark as Taken") {
+                    log.takenTimestamp = Date.now
+                    log.isTaken = true
+                    
+                    if let medication = log.medication {
+                        medication.remainingQuantity = medication.remainingQuantity - 1
                     }
                 }
-            
-                Button("Cancel", role: .cancel, action: {})
-            }, message: { log in
-                if (log.isTaken == false) {
-                    Text("")
-                } else {
-                    Text("")
+            } else {
+                Button("Mark not Taken") {
+                    log.takenTimestamp = nil
+                    log.isTaken = false
+                    
+                    if let medication = log.medication {
+                        medication.remainingQuantity = medication.remainingQuantity + 1
+                    }
                 }
             }
-        )
+        
+            Button("Cancel", role: .cancel, action: {})
+        }
         .sensoryFeedback(.success, trigger: logConfirmAlert)
         
         .task {
