@@ -13,7 +13,8 @@ struct HomeView: View {
     @State var date: Date = Date.now
     let dateRange: ClosedRange<Date> = {
         let start = Calendar.current.date(byAdding: .day, value: -31, to: Date.now)
-        return start! ... Date.now
+        let end = Calendar.current.date(byAdding: .day, value: 31, to: Date.now)
+        return start! ... end!
     }()
     
     @State private var logConfirmAlert: Bool = false
