@@ -70,19 +70,17 @@ class NotificationsManager: NSObject {
         print(pending)
     }
     
-    public func removeScheduledReminders(for idPrefix: String) {
-        Task {
-            let pending = await notificationCenter.pendingNotificationRequests()
-            // Extract ids of only the request with the prefix matching the medication id.
-            let matchingRequestIds = pending.compactMap { request in
-                request.identifier.hasPrefix(idPrefix) ? request.identifier : nil
-            }
-            notificationCenter.removePendingNotificationRequests(withIdentifiers: matchingRequestIds)
+    public func removeScheduledReminders(for idPrefix: String) async {
+        let pending = await notificationCenter.pendingNotificationRequests()
+        // Extract ids of only the request with the prefix matching the medication id.
+        let matchingRequestIds = pending.compactMap { request in
+            request.identifier.hasPrefix(idPrefix) ? request.identifier : nil
         }
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: matchingRequestIds)
     }
     
     public func refreshScheduledReminders(for medication: Medication) async {
-        removeScheduledReminders(for: medication.id.uuidString)
+        await removeScheduledReminders(for: medication.id.uuidString)
         await addScheduledReminders(for: medication)
     }
 }

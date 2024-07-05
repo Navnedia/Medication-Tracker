@@ -26,11 +26,13 @@ struct MedicationsListView: View {
                         medications.move(fromOffsets: from, toOffset: to)
                     }
                     .onDelete { indexes in
-                        for i in indexes {
-                            NotificationsManager.shared.removeScheduledReminders(
-                                for: medications[i].id.uuidString)
+                        Task {
+                            for i in indexes {
+                                await NotificationsManager.shared.removeScheduledReminders(
+                                    for: medications[i].id.uuidString)
+                            }
+                            medications.remove(atOffsets: indexes)
                         }
-                        medications.remove(atOffsets: indexes)
                     }
                     
                 }
